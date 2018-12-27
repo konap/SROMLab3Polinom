@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2019
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SROMLab1", "SROMLab1\SROMLab1.csproj", "{E34B8E15-3ACE-41C8-938F-5490C34ABB1B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmthTest", "SmthTest\SmthTest.csproj", "{D15DA7A2-5F03-4EEE-88B5-6F30B79DDEA4}"
+	ProjectSection(ProjectDependencies) = postProject
+		{E34B8E15-3ACE-41C8-938F-5490C34ABB1B} = {E34B8E15-3ACE-41C8-938F-5490C34ABB1B}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E34B8E15-3ACE-41C8-938F-5490C34ABB1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E34B8E15-3ACE-41C8-938F-5490C34ABB1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E34B8E15-3ACE-41C8-938F-5490C34ABB1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E34B8E15-3ACE-41C8-938F-5490C34ABB1B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D15DA7A2-5F03-4EEE-88B5-6F30B79DDEA4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D15DA7A2-5F03-4EEE-88B5-6F30B79DDEA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D15DA7A2-5F03-4EEE-88B5-6F30B79DDEA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D15DA7A2-5F03-4EEE-88B5-6F30B79DDEA4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DBC72AEF-E5D0-418D-94C6-41F09B2A10BA}
+	EndGlobalSection
+EndGlobal

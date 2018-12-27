@@ -1,0 +1,10 @@
+C:\Users\Костя\source\repos\SROMLab1\SROMLab1\bin\Debug\SROMLab1.exe.config
+C:\Users\Костя\source\repos\SROMLab1\SROMLab1\bin\Debug\SROMLab1.exe
+C:\Users\Костя\source\repos\SROMLab1\SROMLab1\bin\Debug\SROMLab1.pdb
+C:\Users\Костя\source\repos\SROMLab1\SROMLab1\obj\Debug\SROMLab1.csproj.CoreCompileInputs.cache
+C:\Users\Костя\source\repos\SROMLab1\SROMLab1\obj\Debug\SROMLab1.exe
+C:\Users\Костя\source\repos\SROMLab1\SROMLab1\obj\Debug\SROMLab1.pdb
+C:\Users\Костя\source\repos\SROMLab1\SROMLab1\bin\Debug\nunit.framework.dll
+C:\Users\Костя\source\repos\SROMLab1\SROMLab1\bin\Debug\nunit.framework.pdb
+C:\Users\Костя\source\repos\SROMLab1\SROMLab1\bin\Debug\nunit.framework.xml
+C:\Users\Костя\source\repos\SROMLab1\SROMLab1\obj\Debug\SROMLab1.csproj.CopyComplete
