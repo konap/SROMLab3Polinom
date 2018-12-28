@@ -36,6 +36,7 @@ namespace SmthTest
 
      //----------Sub----------
     [Test]
+    [TestCase("88","88","0")]
     [TestCase("5C353D8D758E06E4DFFB37B5",
                 "0",
                 "5C353D8D758E06E4DFFB37B5"

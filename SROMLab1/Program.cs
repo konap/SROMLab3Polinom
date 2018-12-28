@@ -12,7 +12,7 @@ namespace SROMLab1
                 while (temp.Length % 8 != 0)
                 {
                     temp = "0" + temp;
-                }
+                } 
                 var arr = new ulong[temp.Length / 8];
                 for (int i = 0; i < temp.Length; i += 8)
                 {
@@ -24,6 +24,8 @@ namespace SROMLab1
 
             public static string ReConv(ulong[] a)
         {
+
+
             string g, G = "";
             for (int i = 0; i < a.Length; i++)
             {
@@ -33,21 +35,24 @@ namespace SROMLab1
                     while (g.Length < 8);
                 G = g + G;
             }
-            return G.TrimStart('0');
+            G = G.TrimStart('0');
+                if (G == "")
+                    G = "0";
+            return (G);
         }
 
             public static ulong[] LongAddInternal(ulong[] a, ulong[] b)
             {
                 var lenght = Math.Max(a.Length, b.Length);
-                Array.Resize(ref a, lenght);
-                Array.Resize(ref b, lenght);
+                // Array.Resize(ref a, lenght);
+                // Array.Resize(ref b, lenght);
                 ulong[] C = new ulong[a.Length + 1];
 
                 ulong carry = 0;
-                for (int i = 0; i < a.Length; i++)
+                for (int i = 0; i < Math.Min(a.Length, b.Length); i++)
                 {
                     ulong temp = a[i] + b[i] + carry;
-                    C[i] = temp & 0xffffffff; // какого хуя это работает 
+                    C[i] = temp & 0xffffffff;  
                     carry = temp >> 32;
                 }
                 C[a.Length] = carry;
@@ -62,7 +67,7 @@ namespace SROMLab1
                 for (int i = a.Length - 1; i > -1; i--)
                 {
                     if (a[i] < b[i]) return -1;
-                    if (a[i] > b[i]) return 1;
+                    if (a[i] > b[i]) return  1;
                 }
                 return 0;
             }
@@ -122,7 +127,7 @@ namespace SROMLab1
                     temp = LongShiftDigitsToHigh(temp, i);
                     answer = LongAddInternal(answer, temp);
                 }
-                answer = RemoveHighZeros(answer);
+                answer = RemoveHighZeros(answer); //Trim ?
                 return answer;
             }
 
@@ -199,12 +204,10 @@ namespace SROMLab1
                     Q = LongAddInternal(Q, LongShiftBitsToHigh(T, t - k));
                 }
                 Q = RemoveHighZeros(Q);
-                //r = R;
                 return Q;
 
             }
 
-            
             public static ulong[] LongPower(ulong[] a, ulong[] b)
               {
                     string Pow_b = ReConv(b);
@@ -213,7 +216,7 @@ namespace SROMLab1
                     ulong[][] D = new ulong[16][];
                     D[0] = new ulong[1] { 1 };
                     D[1] = a;
-                for (int i = 2; i < 16; i++)
+               for (int i = 2; i < 16; i++)
                 {
                     D[i] = MulUlong(D[i - 1], a);
                     D[i] = RemoveHighZeros(D[i]);
@@ -222,7 +225,7 @@ namespace SROMLab1
                 for (int i = 0; i < Pow_b.Length; i++)
                 {
                     C = MulUlong(C, D[Convert.ToInt32(Pow_b[i].ToString(), 16)]);
-                    if (i != Pow_b.Length - 1)
+                    if (i != Pow_b.Length - 1 )
                     {
                         for (int k = 1; k <= 4; k++)
                         {
@@ -237,14 +240,13 @@ namespace SROMLab1
 
         static void Main(string[] args)
             {
-                var a = Converting("982FD67737A55C8D2FDD3C35685EBCFF8B57BC515EC1C214587489A605DFEC9D");
-                var b = Converting("B5106AE3D824F9CAC3335890B7512DCF27F26F69379115E92596D9367C6FAE3E");
-
-                Console.WriteLine(LongCmp(a, b));
+                var a = Converting("AB6885");
+                var b = Converting("AC68D");
+                //Console.WriteLine(LongCmp(a, b));
                 Console.WriteLine(ReConv(LongAddInternal(a, b)));
-                Console.WriteLine(ReConv(LongSub(a, b)));
-                Console.WriteLine(ReConv(LongMulOneDigit(a,5)));
-                Console.WriteLine(ReConv(MulUlong(a, b)));
+                //Console.WriteLine(ReConv(LongSub(a, b)));
+                //Console.WriteLine(ReConv(LongMulOneDigit(a,5)));
+                //Console.WriteLine(ReConv(MulUlong(a, b)));
                 Console.WriteLine(ReConv(LongDiv(a, b)));
            
                
