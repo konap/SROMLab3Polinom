@@ -7,7 +7,7 @@ namespace SmthTest
     public class UnitTest1
     {
         //----------Add----------
-        [TestCase("5C353D8D758E06E4DFFB37B5", "0", "5C353D8D758E06E4DFFB37B5")]
+        [TestCase("0", "5C353D8D758E06E4DFFB37B5", "5C353D8D758E06E4DFFB37B5")]
         [TestCase("5C353D8D758E06E4DFFB37B5", "1", "5C353D8D758E06E4DFFB37B6")]
         [TestCase("354FE50A9396DA3D5BDB6327FBF7DE11871BF3D0143055EC2AB3786D3A85E62EC763A05A73A7F08D21EEE3CBCAE207E40854121BFF8258F7B2B293B0D30277CD", 
             "58800406778F64750E949A6D229AC61FCD424632593C4735A664199B424E606126A31B875E3D5E9E9C2E13D6995CC801E60C30247808A6EE01E78895E16EAD95", 
@@ -131,8 +131,22 @@ namespace SmthTest
             var actualResult = Calculate.ReConv(Calculate.LongPower(a, b));
             Assert.AreEqual(expectedResult, actualResult);
         }
-      
 
+        //-------------GCD----------
+        [Test]
+        [TestCase("AAAAAAAAAA", "AAAAAAAAAA", "AAAAAAAAAA")]
+        [TestCase("F", "A", "5")]
+        [TestCase("31", "29", "1")]
+        [TestCase("1DF9E9A", "4", "2")]
+
+        public void GCDTest(string hex1, string hex2, string expectedResult)
+        {
+            var a = Calculate.Converting(hex1);
+            var b = Calculate.Converting(hex2);
+
+            var actualResult = Calculate.ReConv(Calculate.BinaryGCD(a, b));
+            Assert.AreEqual(expectedResult, actualResult);
+        }
     }
 }
 
