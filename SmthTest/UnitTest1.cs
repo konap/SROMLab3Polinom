@@ -147,6 +147,27 @@ namespace SmthTest
             var actualResult = Calculate.ReConv(Calculate.BinaryGCD(a, b));
             Assert.AreEqual(expectedResult, actualResult);
         }
+
+
+        //-------------MOD
+
+        [TestCase("D", "F", "D")]
+        [TestCase("F", "B", "4")]
+        [TestCase("87AF11BCD", "B11", "14E")]
+        [TestCase("A55C", "B13", "A52")]
+        [TestCase("3AC9EC8A7D3A554C1E9094A1854ACB0E2B7CBDDE59C2ADA018173C98BF4DFB1BD8D5DCCFD5BDFA9E91C8839958684D7121B4DA8863925E77EA0A27A28867B6CE",
+                 "A320855784D35118ABBDA9116A2D52B9CF76C5C69427AED4F3ADD63FC3B6CC36",
+                 "5C42488F9D580BBA73B6AB5FAEAB251C023E016259A48D44B1947A3837BA0E28")]
+        [TestCase("458ABD6D","789ABC","49E379")]
+
+        public void MODTest(string hex1, string hex2, string expectedResult)
+        {
+            var a = Calculate.Converting(hex1);
+            var b = Calculate.Converting(hex2);
+
+            var actualResult = Calculate.ReConv(Calculate.BarrettReduction(a, b));
+            Assert.AreEqual(expectedResult, actualResult);
+        }
     }
 }
 
