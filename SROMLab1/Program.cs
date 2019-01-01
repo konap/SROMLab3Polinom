@@ -310,17 +310,24 @@ namespace SROMLab1
             return d;
         }
 
+        public static ulong[] usearch(ulong[] b)
+        {
+            ulong[] c = new ulong[] { 0x01 };
+
+            return (LongDiv(LongShiftBitsToHigh(c, 2 * BitLength(b)), b));
+        }
+
         public static ulong[] BarrettReduction(ulong[] a, ulong[] b)
         {
             if (LongCmp(a, b) == -1)
                 return a;
-            ulong[] c = new ulong[] { 0x01 };
-            ulong[] u = LongDiv(LongShiftBitsToHigh(c, 2*BitLength(b)), b);
+            ulong[] u = usearch(b);
 
             ulong[] q = LongShiftBitsToLow(a, BitLength(b)-1);
             q = MulUlong(q, u);
             q = LongShiftBitsToLow(q, BitLength(b) + 1);
             ulong[] r = LongSub(a, MulUlong(q, b));
+
             while (LongCmp(r, b) != -1)
             {
                 r = LongSub(r, b);
@@ -331,16 +338,38 @@ namespace SROMLab1
         public static ulong[] LongModPowerBarrett(ulong[] a, ulong[] b, ulong[] n)
         {
             ulong[] c = new ulong[] { 0x01 };
+            ulong[] one = new ulong[] { 0x01 };
+            ulong[] u = LongDiv(LongShiftDigitsToHigh(one, 2* BitLength(b)), n); //правильно ли сделал с "one"? походу нет
+            for (int i = 0; i < b.Length -1; i++)
+            {
+                if (b[i] == 1)
+                {
+                    ulong[] u1 = usearch (n); 
+                    c = BarrettReduction(MulUlong(c, a), n);
+                }
+                ulong[] u2 = usearch(n); 
+                a = BarrettReduction(MulUlong(a, a), n);
+            }
 
-
-            return c;
+                return c;
+        }
+        public static ulong[] LongModAdd(ulong[] a, ulong[] b, ulong[] n)
+        {
+            ulong[] sum = LongAddInternal(a, b);
+            return (BarrettReduction(sum, n));
         }
 
+        public static ulong[] LongModSub(ulong[] a, ulong[] b, ulong[] n)
+        {
+            ulong[] sum = LongSub(a, b);
+            return (BarrettReduction(sum, n));
+        }
 
         static void Main(string[] args)
         {
-            var a = Converting("F");
-            var b = Converting("B");
+            var a = Converting("7E32A592DB7B01976753");
+            var b = Converting("D09C825BDD032B51B06A15");
+            var c = Converting("3018");
             //Console.WriteLine(LongCmp(a, b));
             // Console.WriteLine(ReConv(LongAddInternal(a, b)));
             //Console.WriteLine(ReConv(LongSub(a, b)));
@@ -349,7 +378,7 @@ namespace SROMLab1
             //Console.WriteLine(ReConv(LongDiv(a, b)));
             //Console.WriteLine(ReConv(LongShiftBitsToHigh(Converting("48C1B463F2782F60D01"), 64)));
             //Console.WriteLine(ReConv(BinaryGCD(a, b)));
-            Console.WriteLine(ReConv(BarrettReduction(a, b)));
+            Console.WriteLine(ReConv(LongModAdd(a, b, c)));
             Console.ReadKey();
         }
     }
