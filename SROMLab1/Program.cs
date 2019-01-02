@@ -338,16 +338,13 @@ namespace SROMLab1
         public static ulong[] LongModPowerBarrett(ulong[] a, ulong[] b, ulong[] n)
         {
             ulong[] c = new ulong[] { 0x01 };
-            ulong[] one = new ulong[] { 0x01 };
-            ulong[] u = LongDiv(LongShiftDigitsToHigh(one, 2* BitLength(b)), n); //правильно ли сделал с "one"? походу нет
+            ulong[] u = usearch(n); 
             for (int i = 0; i < b.Length -1; i++)
             {
                 if (b[i] == 1)
                 {
-                    ulong[] u1 = usearch (n); 
                     c = BarrettReduction(MulUlong(c, a), n);
                 }
-                ulong[] u2 = usearch(n); 
                 a = BarrettReduction(MulUlong(a, a), n);
             }
 
