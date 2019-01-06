@@ -13,6 +13,8 @@ namespace SROMLab1
             {
                 temp = "0" + temp;
             }
+            var cheker = temp.Length;
+            var dm = cheker / 8;
             var arr = new ulong[temp.Length / 8];
             for (int i = 0; i < temp.Length; i += 8)
             {
@@ -65,34 +67,69 @@ namespace SROMLab1
             return C;
         }
 
-        public static short LongCmp(ulong[] a, ulong[] b)
+        public static int FindZeroIndx(ulong[] a)
         {
-            var maxlenght = Math.Max(a.Length, b.Length);
-            Array.Resize(ref a, maxlenght);
-            Array.Resize(ref b, maxlenght);
-            for (int i = a.Length - 1; i > -1; i--)
+            var j = 0;
+
+            int i = a.Length - 1;
+            while ((a[i] == 0))
             {
-                if (a[i] < b[i]) return -1;
-                if (a[i] > b[i]) return 1;
+                i--;
+                
+                j++;
+                if (i == -1)
+                {
+                    break;
+                }
+               
             }
-            return 0;
+            return (j );
         }
+
+        public static int LongCmp(ulong[] a, ulong[] b)
+         {
+
+
+            var realLenghA = a.Length - FindZeroIndx(a);
+            var realLenghB = b.Length - FindZeroIndx(b);
+            if (realLenghA < realLenghB) return -1;
+            if (realLenghA > realLenghB) return 1;
+
+             var start = Math.Max(realLenghA, realLenghB);
+
+
+             for (int i = start-1; i > -1; i--)
+             {
+                 if (a[i] < b[i]) return -1;
+                 if (a[i] > b[i]) return 1;
+             }
+             return 0;
+        }
+    
+            
 
         public static ulong[] LongSub(ulong[] a, ulong[] b)
 
         {
             var lenght = Math.Max(a.Length, b.Length);
-            Array.Resize(ref a, lenght);
-            Array.Resize(ref b, lenght);
+           // Array.Resize(ref a, lenght);
+           // Array.Resize(ref b, lenght);
             ulong[] C = new ulong[a.Length]; //ulong ?
             ulong temp, borrow = 0;
             ulong Zero = 0;
-            for (int i = 0; i < a.Length; i++)
+            for (int i = 0; i < Math.Min(a.Length, b.Length); i++)
             {
                 temp = a[i] - b[i] - borrow;
                 C[i] = (temp & 0xFFFFFFFF);
                 borrow = temp <= a[i] ? Zero : 1;
             }
+            if (a.Length > b.Length)
+                for (int i = Math.Min(a.Length, b.Length); i < a.Length; i++)
+                    C[i] = a[i];
+           /* else
+                for (int i = Math.Min(a.Length, b.Length); i < b.Length; i++)
+                    C[i] = b[i];
+*/
             return C;
         }
 
@@ -151,7 +188,9 @@ namespace SROMLab1
             ulong[] result = new ulong[i + 1];
             Array.Copy(c, result, i + 1);
             return result;
-        }
+        } 
+
+
 
         public static int BitLength(ulong[] a)
         {
@@ -314,7 +353,7 @@ namespace SROMLab1
         {
             ulong[] c = new ulong[] { 0x01 };
 
-            return (LongDiv(LongShiftBitsToHigh(c, 2 * BitLength(b)), b));
+            return (LongDiv(LongShiftBitsToHigh(c, (2 * BitLength(b))), b));
         }
 
         public static ulong[] BarrettReduction(ulong[] a, ulong[] b)
@@ -334,22 +373,31 @@ namespace SROMLab1
             }
             return r;
         }
-
         public static ulong[] LongModPowerBarrett(ulong[] a, ulong[] b, ulong[] n)
         {
             ulong[] c = new ulong[] { 0x01 };
-            ulong[] u = usearch(n); 
-            for (int i = 0; i < b.Length -1; i++)
+            ulong[] u = usearch(n);
+            var length = BitLength(b);
+            for (int j = 0; j < b.Length; j++)
             {
-                if (b[i] == 1)
+                for (int i = 0; i < 32; i++)
                 {
-                    c = BarrettReduction(MulUlong(c, a), n);
+                    var test1 = (b[j] >> i) & 1;
+                   
+
+                    if (test1 == 1)
+                    {
+                        c = BarrettReduction(MulUlong(c, a), n);
+                    }
+
+                    a = BarrettReduction(MulUlong(a, a), n);
                 }
-                a = BarrettReduction(MulUlong(a, a), n);
+             
             }
 
                 return c;
         }
+
         public static ulong[] LongModAdd(ulong[] a, ulong[] b, ulong[] n)
         {
             ulong[] sum = LongAddInternal(a, b);
@@ -364,18 +412,19 @@ namespace SROMLab1
 
         static void Main(string[] args)
         {
-            var a = Converting("7E32A592DB7B01976753");
-            var b = Converting("D09C825BDD032B51B06A15");
-            var c = Converting("3018");
-            //Console.WriteLine(LongCmp(a, b));
+            var a = Converting("1131A0939A911173");
+            var b = Converting("1800000000000000");
+            var c = Converting("18D95542377F163795BB3CC5065F56A9E9386F4F580F076A745B01E1A51D6A9F");
+           Console.WriteLine(LongCmp(a, b));
             // Console.WriteLine(ReConv(LongAddInternal(a, b)));
             //Console.WriteLine(ReConv(LongSub(a, b)));
             //Console.WriteLine(ReConv(LongMulOneDigit(a,5)));
             //Console.WriteLine(ReConv(MulUlong(a, b)));
-            //Console.WriteLine(ReConv(LongDiv(a, b)));
+          //  Console.WriteLine(ReConv(LongDiv(a, b)));
             //Console.WriteLine(ReConv(LongShiftBitsToHigh(Converting("48C1B463F2782F60D01"), 64)));
-            //Console.WriteLine(ReConv(BinaryGCD(a, b)));
-            Console.WriteLine(ReConv(LongModAdd(a, b, c)));
+            //Console.WriteLine(ReConv(BarrettReduction(a, b))); 
+           //Console.WriteLine(ReConv(LongModPowerBarrett(a, b, c)));
+            //Console.WriteLine(ReConv(LongModAdd(a, b, c)));
             Console.ReadKey();
         }
     }
