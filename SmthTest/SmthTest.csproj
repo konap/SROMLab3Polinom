@@ -61,9 +61,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SROMLab1\SROMLab1.csproj">
+    <ProjectReference Include="..\SROMLab1\SROMLab3.csproj">
       <Project>{E34B8E15-3ACE-41C8-938F-5490C34ABB1B}</Project>
-      <Name>SROMLab1</Name>
+      <Name>SROMLab3</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />

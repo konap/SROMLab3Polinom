@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2019
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SROMLab1", "SROMLab1\SROMLab1.csproj", "{E34B8E15-3ACE-41C8-938F-5490C34ABB1B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SROMLab3", "SROMLab1\SROMLab3.csproj", "{E34B8E15-3ACE-41C8-938F-5490C34ABB1B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmthTest", "SmthTest\SmthTest.csproj", "{D15DA7A2-5F03-4EEE-88B5-6F30B79DDEA4}"
 	ProjectSection(ProjectDependencies) = postProject

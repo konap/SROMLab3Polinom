@@ -1,0 +1,11 @@
+C:\Users\ko989\source\repos\SROM — копия\SROMLab1\bin\Debug\SROMLab1.exe.config
+C:\Users\ko989\source\repos\SROM — копия\SROMLab1\bin\Debug\SROMLab1.exe
+C:\Users\ko989\source\repos\SROM — копия\SROMLab1\bin\Debug\SROMLab1.pdb
+C:\Users\ko989\source\repos\SROM — копия\SROMLab1\bin\Debug\nunit.framework.dll
+C:\Users\ko989\source\repos\SROM — копия\SROMLab1\bin\Debug\nunit.framework.pdb
+C:\Users\ko989\source\repos\SROM — копия\SROMLab1\bin\Debug\nunit.framework.xml
+C:\Users\ko989\source\repos\SROM — копия\SROMLab1\obj\Debug\SROMLab3.csprojAssemblyReference.cache
+C:\Users\ko989\source\repos\SROM — копия\SROMLab1\obj\Debug\SROMLab3.csproj.CoreCompileInputs.cache
+C:\Users\ko989\source\repos\SROM — копия\SROMLab1\obj\Debug\SROMLab3.csproj.CopyComplete
+C:\Users\ko989\source\repos\SROM — копия\SROMLab1\obj\Debug\SROMLab1.exe
+C:\Users\ko989\source\repos\SROM — копия\SROMLab1\obj\Debug\SROMLab1.pdb
